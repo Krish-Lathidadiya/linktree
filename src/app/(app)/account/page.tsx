@@ -9,13 +9,12 @@ import PageSettingForm from "@/components/forms/PageSettingForm";
 import PageButtonsForm from "@/components/forms/PageButtonsForm";
 import PageLinkForm from "@/components/forms/PageLinkForm";
 
-interface AccountPageProps {
-  searchParams: { desiredUsername?: string };
-}
-
+// Removed the unnecessary `AccountPageProps` constraint.
 async function AccountPage({
   searchParams,
-}: AccountPageProps) {
+}: {
+  searchParams: { desiredUsername?: string };
+}) {
   const session: Session | null = await getServerSession(authOptions);
 
   if (!session) {
@@ -42,7 +41,6 @@ async function AccountPage({
   const desiredUsername = searchParams?.desiredUsername || "";
 
   return (
-    // if user doesn't have any linktree then we grab it
     <div>
       <UsernameForm desiredUsername={desiredUsername} />
     </div>
