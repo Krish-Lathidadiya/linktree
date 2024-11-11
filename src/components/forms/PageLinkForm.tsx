@@ -1,7 +1,6 @@
 "use client";
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import SectionBox from "../layout/SectionBox";
-import { Session } from "next-auth";
 import { IPage } from "@/models/Page";
 import {
   ExchangeIcon,
@@ -14,6 +13,7 @@ import {
 import { ReactSortable } from "react-sortablejs";
 import { savePageLinks } from "@/actions/pageActions";
 import toast from "react-hot-toast";
+import Image from "next/image";
 
 export type TLinks = {
   id: string;
@@ -21,15 +21,9 @@ export type TLinks = {
   subTitle: string;
   icon: string;
   url: string;
-  createdAt?:string;
+  createdAt?: string;
 };
-function PageLinkForm({
-  page,
-  session,
-}: {
-  page: IPage;
-  session: Session | null;
-}) {
+function PageLinkForm({ page }: { page: IPage }) {
   const [links, setLinks] = useState<TLinks[]>(
     Array.isArray(page.links) ? page.links : []
   );
@@ -126,7 +120,7 @@ function PageLinkForm({
                 <div className="flex flex-col items-center gap-2">
                   <div className="bg-gray-200 w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center shadow-md overflow-hidden">
                     {l.icon ? (
-                      <img
+                      <Image
                         src={l.icon}
                         alt="icon"
                         className="w-full h-full object-cover rounded-full"

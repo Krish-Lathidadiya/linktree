@@ -28,7 +28,7 @@ async function AccountPage({
         <>
           <PageSettingForm page={page} session={session} />
           <PageButtonsForm page={page} />
-          <PageLinkForm page={page} session={session} />
+          <PageLinkForm page={page} />
         </>
       );
     }

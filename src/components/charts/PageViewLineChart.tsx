@@ -82,8 +82,8 @@ function PageViewLineChart({ groupedViews }: PageViewLineChartProps) {
           />
           <YAxis />
           <Tooltip
-            formatter={(value: any) => [value, "clicks"]}
-            labelFormatter={(label: any) =>
+            formatter={(value: number) => [value, "clicks"]}
+            labelFormatter={(label: string) =>
               isValid(parseISO(label))
                 ? format(parseISO(label), "MMMM dd, yyyy")
                 : label

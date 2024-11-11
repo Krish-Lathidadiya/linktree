@@ -27,13 +27,13 @@ function PageSettingForm({
     event.preventDefault();
     setLoading(true);
     const formData = new FormData(event.target as HTMLFormElement);
-
+  
     // Add fileUrl and ExistedFileUrl to FormData
     formData.append("bgImage", bgImage);
     formData.append("existedFileUrl", page.bgImage);
     formData.append("avatar", avatar as string);
     formData.append("existedAvataUrl", session?.user?.image as string);
-
+  
     try {
       const result = await savepageSettings(formData);
       if (result) {
@@ -41,11 +41,12 @@ function PageSettingForm({
       } else {
         toast.error("Saving failed");
       }
-    } catch (error) {
+    } catch {
       toast.error("Error occurred while saving.");
     }
     setLoading(false);
   }
+  
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];

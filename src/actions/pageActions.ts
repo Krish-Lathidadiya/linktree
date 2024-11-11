@@ -71,7 +71,7 @@ export async function savepageSettings(formData: FormData): Promise<boolean> {
 
 export async function savePageButtons(formData: FormData): Promise<boolean> {
   try {
-    connectDB();
+    await connectDB();
 
     // Get the session
     const session = await getServerSession(authOptions);
@@ -81,9 +81,10 @@ export async function savePageButtons(formData: FormData): Promise<boolean> {
     const page = await Page.findOne({ owner: session.user?.email });
     if (!page) return false;
 
-    const buttonValues: { [key: string]: any } = {};
+    // Specify a more explicit type instead of any
+    const buttonValues: { [key: string]: string } = {};
     formData.forEach((value, key) => {
-      buttonValues[key] = value;
+      buttonValues[key] = value as string; // Assuming all values are strings
     });
 
     await Page.updateOne(

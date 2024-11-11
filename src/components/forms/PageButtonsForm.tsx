@@ -3,7 +3,6 @@
 import React, { FormEvent, useState } from "react";
 import SectionBox from "../layout/SectionBox";
 import { IPage } from "@/models/Page";
-import { Session } from "next-auth";
 import { GripLinesIcon, PlusIcon, SaveIcon, TrashIcon } from "../../../public/icons";
 import { savePageButtons } from "@/actions/pageActions";
 import toast from "react-hot-toast";
