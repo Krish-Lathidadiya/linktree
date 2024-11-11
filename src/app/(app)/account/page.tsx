@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../api/auth/[...nextauth]/route";
 import { Session } from "next-auth";
-import { redirect } from "next/navigation";
+import { redirect, useSearchParams } from "next/navigation"; // useSearchParams is the key
 import UsernameForm from "@/components/forms/UsernameForm";
 import Page from "@/models/Page";
 import connectDB from "@/libs/connect";
@@ -9,18 +9,14 @@ import PageSettingForm from "@/components/forms/PageSettingForm";
 import PageButtonsForm from "@/components/forms/PageButtonsForm";
 import PageLinkForm from "@/components/forms/PageLinkForm";
 
-// Removed the unnecessary `AccountPageProps` constraint.
-async function AccountPage({
-  searchParams,
-}: {
-  searchParams: { desiredUsername?: string };
-}) {
+async function AccountPage() {
   const session: Session | null = await getServerSession(authOptions);
 
   if (!session) {
     return redirect("/");
   }
 
+  // Fetch the page data for the authenticated user
   try {
     await connectDB();
     const page = await Page.findOne({ owner: session?.user?.email });
@@ -38,7 +34,9 @@ async function AccountPage({
     return <div>Failed to load account details. Please try again later.</div>;
   }
 
-  const desiredUsername = searchParams?.desiredUsername || "";
+  // Access query parameters using useSearchParams on the client side
+  const searchParams = useSearchParams();
+  const desiredUsername = searchParams?.get('desiredUsername') || "";
 
   return (
     <div>
