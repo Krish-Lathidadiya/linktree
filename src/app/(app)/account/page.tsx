@@ -9,11 +9,13 @@ import PageSettingForm from "@/components/forms/PageSettingForm";
 import PageButtonsForm from "@/components/forms/PageButtonsForm";
 import PageLinkForm from "@/components/forms/PageLinkForm";
 
+interface AccountPageProps {
+  searchParams: { desiredUsername?: string };
+}
+
 async function AccountPage({
   searchParams,
-}: {
-  searchParams: { desiredUsername?: string };
-}) {
+}: AccountPageProps) {
   const session: Session | null = await getServerSession(authOptions);
 
   if (!session) {
