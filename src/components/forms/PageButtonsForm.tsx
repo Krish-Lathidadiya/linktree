@@ -51,10 +51,9 @@ const upperFirst = (str: string): string =>
 
 function PageButtonsForm({
   page,
-  session,
+
 }: {
   page: IPage;
-  session: Session | null;
 }) {
   type ButtonType = {
     id: string;

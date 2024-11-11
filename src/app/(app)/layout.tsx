@@ -5,7 +5,6 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
 import Image from "next/image";
-import { signOut } from "next-auth/react";
 import AppSidebar from "@/components/layout/AppSidebar";
 import { Toaster } from "react-hot-toast";
 import Page from "@/models/Page";

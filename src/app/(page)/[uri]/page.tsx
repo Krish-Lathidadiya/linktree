@@ -8,7 +8,6 @@ import Link from "next/link";
 import DynamicIcon from "@/utils/DynamicIcon";
 import { TLinks } from "@/components/forms/PageLinkForm";
 import Event from "@/models/Event";
-import axios from "axios";
 
 export const buttonsIcons: Record<
   string,
