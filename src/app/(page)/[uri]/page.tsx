@@ -61,13 +61,7 @@ async function UserPage({ params }: { params: { uri: string } }) {
   }
 
   await Event.create({ uri: uri, type: "view" });
-  async function handleLinkClick(url: string) {
-    try {
-      await axios.post(`/api/click?uri=${btoa(url)}`);
-    } catch (error) {
-      console.error("Error logging click event:", error);
-    }
-  }
+
   return (
     <div className="bg-blue-950 text-white min-h-screen">
       {/* Header Section */}

@@ -46,10 +46,6 @@ export default async function AppLayout({
   // Fetch the page data for the logged-in user
   const page = await Page.findOne({ owner: session.user?.email });
 
-  const handleLogout = async () => {
-    await signOut();
-  };
-
   return (
     <html lang="en">
       <body
